@@ -16,3 +16,14 @@ hooks:
         printf "\n\nOpen resource group in the portal:\033[1;36m $GROUP_URL\033[0m\n"
       interactive: true
       continueOnError: true
+    windows:
+      shell: pwsh
+      run: |
+        infra/azAcrBuild.ps1 && 
+        Write-Host "APPLICATIONINSIGHTS_CONNECTION_STRING $APPLICATIONINSIGHTS_CONNECTION_STRING" && 
+        Write-Host "Azure container registry name $ACR_NAME" && 
+        Write-Host "Managed identity resource ID $MI_ID" && 
+        Write-Host "Managed identity client ID $MI_CLIENT_ID" && 
+        Write-Host "Open resource group in the portal: $GROUP_URL"
+      interactive: true
+      continueOnError: false
